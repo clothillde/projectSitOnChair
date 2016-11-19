@@ -22,13 +22,15 @@ document.addEventListener('DOMContentLoaded',function(){
 
     var chosenRectangle = element.querySelector(".rectangle");
 
-    element.addEventListener("mouseover", function(e) {
-      chosenRectangle.classList.add("hide");
-    });
+    if(chosenRectangle) {
+      element.addEventListener("mouseover", function(e) {
+        chosenRectangle.classList.add("hide");
+      });
 
-    element.addEventListener("mouseout", function(e) {
-      chosenRectangle.classList.remove("hide");
-    });
+      element.addEventListener("mouseout", function(e) {
+        chosenRectangle.classList.remove("hide");
+      });
+    }
 
 });
 
@@ -60,6 +62,118 @@ document.addEventListener('DOMContentLoaded',function(){
       actualSlide = slides.length-1;
     }
     slides[actualSlide].classList.add("visible");
+  });
+
+
+  // zadanie *
+
+  // zmienne pomocnicze
+  var sum = 0;
+  var choice;
+  var choice2;
+  // wczytanie miejsca na podanie sumy
+  var yourCost = document.getElementById("your_sum");
+  // wczytanie, ktora strzalka wyboru jest aktywna
+  var chosenArrow = Array.from(document.querySelectorAll(".list_arrow"));
+
+  // dla wybranej strzalki wyboru rozwin menu z opcjami
+  chosenArrow.forEach(function(element) {
+    var chosenList = element.parentElement.querySelector(".list_panel");
+
+    element.addEventListener("click", function(e) {
+      chosenList.classList.toggle("shooow");
+    });
+
+    // wczytanie zmiennych
+    // sprawdzenie, ktory element zostal wybrany
+    // wczytanie miejsc, do ktorych wysylamy wybrana nazwe oraz cene
+    var findListChair = element.parentElement.querySelector(".list_panel");
+    var chosenListChair = Array.from(findListChair.querySelectorAll('[data-chair-price]'));
+    var yourChair = document.getElementById("your_chair");
+    var costChair = document.getElementById("cost_chair");
+
+    // dla kazdej opcji sprawdzamy, ktora zostala wybrana
+    // wyslanie wybranych danych - nazwy i ceny do formularza
+    // suma jest na biezaco aktualizowana
+    chosenListChair.forEach(function(target){
+      target.addEventListener("click", function(e) {
+        choice = target.innerText;
+        yourChair.innerText = choice;
+        choice2 = parseFloat(target.dataset.chairPrice);
+        costChair.innerText = choice2;
+        sum += choice2;
+        yourCost.innerText = sum + " zł";
+      });
+    });
+
+
+    // wczytanie zmiennych
+    // sprawdzenie, ktory element zostal wybrany
+    // wczytanie miejsc, do ktorych wysylamy wybrana nazwe oraz cene
+    var findListColor = element.parentElement.querySelector(".list_panel");
+    var chosenListColor = Array.from(findListColor.querySelectorAll('[data-color-price]'));
+    var yourColor = document.getElementById("your_color");
+    var costColor = document.getElementById("cost_color");
+
+    // dla kazdej opcji sprawdzamy, ktora zostala wybrana
+    // wyslanie wybranych danych - koloru i ceny do formularza
+    // suma jest na biezaco aktualizowana
+    chosenListColor.forEach(function(target){
+      target.addEventListener("click", function(e) {
+        choice = target.innerText;
+        yourColor.innerText = choice;
+        choice2 = parseFloat(target.dataset.colorPrice);
+        costColor.innerText = choice2;
+        sum += choice2;
+        yourCost.innerText = sum + " zł";
+      });
+    });
+
+
+    // wczytanie zmiennych
+    // sprawdzenie, ktory element zostal wybrany
+    // wczytanie miejsc, do ktorych wysylamy wybrana nazwe oraz cene
+    var findListPattern = element.parentElement.querySelector(".list_panel");
+    var chosenListPattern = Array.from(findListPattern.querySelectorAll('[data-pattern-price]'));
+    var yourPattern = document.getElementById("your_pattern");
+    var costPattern = document.getElementById("cost_pattern");
+
+    // dla kazdej opcji sprawdzamy, ktora zostala wybrana
+    // wyslanie wybranych danych - materialu i ceny do formularza
+    // suma jest na biezaco aktualizowana
+    chosenListPattern.forEach(function(target){
+      target.addEventListener("click", function(e) {
+        choice = target.innerText;
+        yourPattern.innerText = choice;
+        choice2 = parseFloat(target.dataset.patternPrice);
+        costPattern.innerText = choice2;
+        sum += choice2;
+        console.log(sum);
+        yourCost.innerText = sum + " zł";
+      });
+    });
+  });
+
+  // wczytanie zmiennych dla checkboxa z transportem
+  // wcztanie miejsc, do ktorych wysylamy informacje
+  var transport = document.querySelector('input[type="checkbox"]');
+  var transportLabel = document.querySelector("label");
+  var yourTransport = document.getElementById("your_transport");
+  var chosenTransport = document.querySelector('[data-transport-price]');
+  var costTransport = document.getElementById("cost_transport");
+
+  // jesli checkbox jest zaznaczony
+  // wyslanie wybranych danych - opcji transportu i ceny do formularza
+  // suma jest na biezaco aktualizowana
+  transport.addEventListener("click", function(e) {
+    if(transport.checked) {
+      choice = transportLabel.innerText;
+      yourTransport.innerText = choice;
+      choice2 = parseFloat(chosenTransport.dataset.transportPrice);
+      costTransport.innerText = choice2;
+      sum += choice2;
+      yourCost.innerText = sum + " zł";
+    }
   });
 
 });

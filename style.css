@@ -234,8 +234,6 @@ a#seemore {
   bottom: 14px;
 }
 
-
-
 /*.art2tile:hover .rectangle {
   display: none;
 }*/
@@ -400,24 +398,28 @@ a.seemore2 {
 
 
 /*section - part with choice*/
-/*.application {
+
+.application {
   background-color: #f9f9f9;
   padding:30px 0;
-  font-family: Arial, Verdana, sans-serif;
 }
 .application h3 {
   color: #575757;
-  font-size: 18px;
+  font-size: 20px;
+  background-color: #f9f9f9;
 }
-
+.bell {
+  background-color: #f9f9f9;
+}
 .application header.align_right{
   text-align: right;
+  background-color: #f9f9f9;
 }
 
 
 .inline {
   display:inline-block;
-  width:300px;
+  width:33%;
   padding:14px;
   vertical-align: top;
 }
@@ -428,8 +430,8 @@ a.seemore2 {
 }
 .drop_down_list {
   border:1px solid #8de0d2;
-  width: 280px;
-  height:38px;
+  width: 310px;
+  height: 50px;
   background-color: white;
   margin-top:22px;
   padding: 8px 12px;
@@ -438,6 +440,7 @@ a.seemore2 {
 
 .list_label {
   font-size: 30px;
+  font-weight: lighter;
   color: #e2e2e2;
   font-family: 'ralewaylight', Arial, Tahoma, sans-serif;
 }
@@ -611,7 +614,7 @@ a.seemore2 {
 .list_panel {
   background-color: white;
   border: 1px solid #ccc;
-  width: 288px;
+  width: 308px;
   padding-left: 15px;
   padding-bottom: 10px;
   list-style: none;
@@ -619,8 +622,11 @@ a.seemore2 {
   left: 0px;
   z-index: 2;
   position: absolute;
-  top: 54px;
+  top: 48px;
   display:none;
+}
+.shooow {
+  display: block;
 }
 .list_panel li {
   margin-top:10px;
@@ -629,9 +635,8 @@ a.seemore2 {
 }
 
 .title {
-  height: 30px;
-}*/
-
+  height: 25px;
+}
 
 /* section4 - part with contact*/
 

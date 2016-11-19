@@ -158,12 +158,12 @@
 
 
 <!-- part with choice -->
-<!-- <section class="application ">
+<section class="application ">
   <article class="row">
     <section class="container">
     <div class="main_width">
         <section class="choice_part inline">
-            <header>
+            <header class="bell">
                 <h3>SKOMPONUJ SWOJE KRZESŁO</h3>
                 <span class="green_bell"></span>
             </header>
@@ -173,26 +173,26 @@
                     <span class="list_label">Wybierz rodzaj</span>
                     <span class="list_arrow"></span>
                     <ul class="list_panel">
-                        <li>Clair</li>
-                        <li>Margarita</li>
-                        <li>Selena</li>
+                        <li data-chair-price="300">Clair</li>
+                        <li data-chair-price="400">Margarita</li>
+                        <li data-chair-price="500">Selena</li>
                     </ul>
                 </div>
                 <div class="drop_down_list">
                     <span class="list_label">Wybierz kolor</span>
                     <span class="list_arrow"></span>
-                    <ul class="list_panel">
-                        <li>Czerwony</li>
-                        <li>Czarny</li>
-                        <li>Pomarańczowy</li>
+                    <ul class="list_panel color">
+                        <li data-color-price="200">Czerwony</li>
+                        <li data-color-price="300">Czarny</li>
+                        <li data-color-price="100">Pomarańczowy</li>
                     </ul>
                 </div>
                 <div class="drop_down_list">
                     <span class="list_label">Wybierz materiał</span>
                     <span class="list_arrow"></span>
-                    <ul class="list_panel">
-                        <li>Tkanina</li>
-                        <li>Skóra</li>
+                    <ul class="list_panel pattern">
+                        <li data-pattern-price="900">Tkanina</li>
+                        <li data-pattern-price="1000">Skóra</li>
                     </ul>
                 </div>
                 <div class="checkbox check-box">
@@ -201,7 +201,7 @@
                 </div>
                 <!--<div class="checkbox"></div>-->
                 <!--<span class="list_label inline_text">Transport</span>-->
-            <!-- </div>
+            </div>
         </section>
 
         <section class="image_part inline">
@@ -216,27 +216,26 @@
 
             <div class="summary_panel">
                 <div class="panel_left">
-                    <h4 class="title">Twój fotel</h4>
-                    <span class="color"></span>
-                    <span class="pattern"></span>
-                    <span class="transport"></span>
+                    <h4 class="title" id="your_chair">Twój fotel</h4>
+                    <span class="color" id="your_color"></span>
+                    <span class="pattern" id="your_pattern"></span>
+                    <span class="transport" id="your_transport"></span>
                 </div>
                 <div class="panel_right">
-                    <h4 class="title value"></h4>
-                    <span class="color value"></span>
-                    <span class="pattern value"></span>
-                    <span class="transport value"></span>
+                    <h4 class="title value" id="cost_chair"></h4>
+                    <span class="color value" id="cost_color"></span>
+                    <span class="pattern value" id="cost_pattern"></span>
+                    <span class="transport value" id="cost_transport"></span>
                 </div>
                 <div class="sum_label">SUMA</div>
-                <div class="sum"><strong></strong></div>
+                <div class="sum" id="your_sum"><strong></strong></div>
             </div>
             <a href="" class="green_button">Zamawiam</a>
         </section>
     </div>
   </section>
 </article>
-</section> --> -->
-
+</section>
 
 <!-- part with contact-->
   <section class="container">
