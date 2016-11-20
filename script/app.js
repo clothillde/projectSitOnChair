@@ -70,13 +70,13 @@ document.addEventListener('DOMContentLoaded',function(){
   // deklaracja zmiennych pomocniczych
     
   // suma ceny krzesla
-  var sum1 = 0;
+  var sumChair = 0;
   // suma koloru krzesla
-  var sum2 = 0;
+  var sumColor = 0;
   // suma materialu krzesla
-  var sum3 = 0;
+  var sumPattern = 0;
   // suma transportu
-  var sum4 = 0;
+  var sumTransport = 0;
     
   var choice;
   var choice2;
@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded',function(){
       chosenList.classList.toggle("shooow");
     });
 
+      
     // wczytanie zmiennych
     // sprawdzenie, ktory element zostal wybrany
     // wczytanie miejsc, do ktorych wysylamy wybrana nazwe oraz cene
@@ -102,6 +103,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var yourChair = document.getElementById("your_chair");
     var costChair = document.getElementById("cost_chair");
 
+      
     // dla kazdej opcji sprawdzamy, ktora zostala wybrana
     // wyslanie wybranych danych - nazwy i ceny do formularza
     // suma jest na biezaco aktualizowana
@@ -112,8 +114,9 @@ document.addEventListener('DOMContentLoaded',function(){
         choice2 = parseFloat(target.dataset.chairPrice);
         costChair.innerText = choice2;
           if(yourCost.innerText !== " "){
-            sum1 = choice2;
-            yourCost.innerText = sum1 + " zł";
+            sumChair = choice2;
+            // koszt ogolny to suma wszystkich cen, aby kwota zmieniala sie jesli ktos zmieni zdanie i postanowi wybrac inne krzeslo albo kolor itd.
+            yourCost.innerText = sumTransport + sumPattern + sumColor + sumChair + " zł";
           }
       });
     });
@@ -127,6 +130,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var yourColor = document.getElementById("your_color");
     var costColor = document.getElementById("cost_color");
 
+      
     // dla kazdej opcji sprawdzamy, ktora zostala wybrana
     // wyslanie wybranych danych - koloru i ceny do formularza
     // suma jest na biezaco aktualizowana
@@ -137,8 +141,8 @@ document.addEventListener('DOMContentLoaded',function(){
         choice2 = parseFloat(target.dataset.colorPrice);
         costColor.innerText = choice2;
           if(yourCost.innerText !== " "){
-            sum2 = choice2;
-            yourCost.innerText = sum2 + sum1 + " zł";
+            sumColor = choice2;
+            yourCost.innerText = sumTransport + sumChair + sumColor + sumPattern + " zł";
           }
       });
     });
@@ -162,13 +166,14 @@ document.addEventListener('DOMContentLoaded',function(){
         choice2 = parseFloat(target.dataset.patternPrice);
         costPattern.innerText = choice2;
           if(yourCost.innerText !== " "){
-            sum3 = choice2;
-            yourCost.innerText = sum3 +sum2 + sum1 + " zł";
+            sumPattern = choice2;
+            yourCost.innerText = sumTransport + sumPattern +sumColor + sumChair + " zł";
           }
       });
     });
   });
 
+    
   // wczytanie zmiennych dla checkboxa z transportem
   // wcztanie miejsc, do ktorych wysylamy informacje
   var transport = document.querySelector('input[type="checkbox"]');
@@ -177,6 +182,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var chosenTransport = document.querySelector('[data-transport-price]');
   var costTransport = document.getElementById("cost_transport");
 
+    
   // jesli checkbox jest zaznaczony
   // wyslanie wybranych danych - opcji transportu i ceny do formularza
   // suma jest na biezaco aktualizowana
@@ -186,15 +192,16 @@ document.addEventListener('DOMContentLoaded',function(){
       yourTransport.innerText = choice;
       choice2 = parseFloat(chosenTransport.dataset.transportPrice);
       costTransport.innerText = choice2;
-      sum4 += choice2;
-      yourCost.innerText = sum4 + sum3 + sum2 + sum1 + " zł";
+      sumTransport += choice2;
+      yourCost.innerText = sumTransport + sumPattern + sumColor + sumChair + " zł";
     }
     // jesli odznaczymy transport to ta opcja zniknie w formularzu, a cena zostanie zmniejszona o jego cene  
     else {
       yourTransport.innerText = " ";
       costTransport.innerText = " ";
-      sum4 -= choice2;
-      yourCost.innerText = sum4 + sum3 + sum2 + sum1 + " zł";
+      choice2 = parseFloat(chosenTransport.dataset.transportPrice);
+      sumTransport -= choice2;
+      yourCost.innerText = sumTransport + sumPattern + sumColor + sumChair + " zł";
     }
   });
 
