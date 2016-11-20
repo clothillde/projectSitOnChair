@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded',function(){
 
   // zadanie 1 - menu
-  var aboutCompany = document.getElementById("aboutCompany");
+  var aboutCompany = document.querySelector(".leftmenu");
   var menu = document.querySelector("#hiddenMenu");
 
   menu.classList.add("hide");
@@ -67,14 +67,24 @@ document.addEventListener('DOMContentLoaded',function(){
 
   // zadanie *
 
-  // zmienne pomocnicze
-  var sum = 0;
+  // deklaracja zmiennych pomocniczych
+    
+  // suma ceny krzesla
+  var sum1 = 0;
+  // suma koloru krzesla
+  var sum2 = 0;
+  // suma materialu krzesla
+  var sum3 = 0;
+  // suma transportu
+  var sum4 = 0;
+    
   var choice;
   var choice2;
   // wczytanie miejsca na podanie sumy
   var yourCost = document.getElementById("your_sum");
   // wczytanie, ktora strzalka wyboru jest aktywna
   var chosenArrow = Array.from(document.querySelectorAll(".list_arrow"));
+    
 
   // dla wybranej strzalki wyboru rozwin menu z opcjami
   chosenArrow.forEach(function(element) {
@@ -101,8 +111,10 @@ document.addEventListener('DOMContentLoaded',function(){
         yourChair.innerText = choice;
         choice2 = parseFloat(target.dataset.chairPrice);
         costChair.innerText = choice2;
-        sum += choice2;
-        yourCost.innerText = sum + " zł";
+          if(yourCost.innerText !== " "){
+            sum1 = choice2;
+            yourCost.innerText = sum1 + " zł";
+          }
       });
     });
 
@@ -124,8 +136,10 @@ document.addEventListener('DOMContentLoaded',function(){
         yourColor.innerText = choice;
         choice2 = parseFloat(target.dataset.colorPrice);
         costColor.innerText = choice2;
-        sum += choice2;
-        yourCost.innerText = sum + " zł";
+          if(yourCost.innerText !== " "){
+            sum2 = choice2;
+            yourCost.innerText = sum2 + sum1 + " zł";
+          }
       });
     });
 
@@ -147,9 +161,10 @@ document.addEventListener('DOMContentLoaded',function(){
         yourPattern.innerText = choice;
         choice2 = parseFloat(target.dataset.patternPrice);
         costPattern.innerText = choice2;
-        sum += choice2;
-        console.log(sum);
-        yourCost.innerText = sum + " zł";
+          if(yourCost.innerText !== " "){
+            sum3 = choice2;
+            yourCost.innerText = sum3 +sum2 + sum1 + " zł";
+          }
       });
     });
   });
@@ -171,8 +186,15 @@ document.addEventListener('DOMContentLoaded',function(){
       yourTransport.innerText = choice;
       choice2 = parseFloat(chosenTransport.dataset.transportPrice);
       costTransport.innerText = choice2;
-      sum += choice2;
-      yourCost.innerText = sum + " zł";
+      sum4 += choice2;
+      yourCost.innerText = sum4 + sum3 + sum2 + sum1 + " zł";
+    }
+    // jesli odznaczymy transport to ta opcja zniknie w formularzu, a cena zostanie zmniejszona o jego cene  
+    else {
+      yourTransport.innerText = " ";
+      costTransport.innerText = " ";
+      sum4 -= choice2;
+      yourCost.innerText = sum4 + sum3 + sum2 + sum1 + " zł";
     }
   });
 
