@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded',function(){
 
-  // zadanie 1 - menu
+  //menu show/hide on hover
   var aboutCompany = document.querySelector(".leftmenu");
   var menu = document.querySelector("#hiddenMenu");
 
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 
 
-  // zadanie 2 - images
+  //images show/hide rectangles with names
   var chosenImage = Array.from(document.querySelectorAll(".art2tile"));
 
   chosenImage.forEach(function(element) {
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 
 
-  // zadanie 3 - slider
+  //main slider
   var nextBtn = document.querySelector("#arrowr");
   var prevBtn = document.querySelector("#arrowl");
   var slides = document.querySelectorAll("#art2small li");
@@ -65,144 +65,86 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 
 
-  // zadanie *
-
-  // deklaracja zmiennych pomocniczych
+  //extra *
+         
+    var sum_place = document.querySelector(".sum");
     
-  // suma ceny krzesla
-  var sumChair = 0;
-  // suma koloru krzesla
-  var sumColor = 0;
-  // suma materialu krzesla
-  var sumPattern = 0;
-  // suma transportu
-  var sumTransport = 0;
-    
-  var choice;
-  var choice2;
-  // wczytanie miejsca na podanie sumy
-  var yourCost = document.getElementById("your_sum");
-  // wczytanie, ktora strzalka wyboru jest aktywna
-  var chosenArrow = Array.from(document.querySelectorAll(".list_arrow"));
-    
-
-  // dla wybranej strzalki wyboru rozwin menu z opcjami
-  chosenArrow.forEach(function(element) {
-    var chosenList = element.parentElement.querySelector(".list_panel");
-
-    element.addEventListener("click", function(e) {
-      chosenList.classList.toggle("shooow");
-    });
-
-      
-    // wczytanie zmiennych
-    // sprawdzenie, ktory element zostal wybrany
-    // wczytanie miejsc, do ktorych wysylamy wybrana nazwe oraz cene
-    var findListChair = element.parentElement.querySelector(".list_panel");
-    var chosenListChair = Array.from(findListChair.querySelectorAll('[data-chair-price]'));
-    var yourChair = document.getElementById("your_chair");
-    var costChair = document.getElementById("cost_chair");
-
-      
-    // dla kazdej opcji sprawdzamy, ktora zostala wybrana
-    // wyslanie wybranych danych - nazwy i ceny do formularza
-    // suma jest na biezaco aktualizowana
-    chosenListChair.forEach(function(target){
-      target.addEventListener("click", function(e) {
-        choice = target.innerText;
-        yourChair.innerText = choice;
-        choice2 = parseFloat(target.dataset.chairPrice);
-        costChair.innerText = choice2;
-          if(yourCost.innerText !== " "){
-            sumChair = choice2;
-            // koszt ogolny to suma wszystkich cen, aby kwota zmieniala sie jesli ktos zmieni zdanie i postanowi wybrac inne krzeslo albo kolor itd.
-            yourCost.innerText = sumTransport + sumPattern + sumColor + sumChair + " zł";
-          }
-      });
-    });
-
-
-    // wczytanie zmiennych
-    // sprawdzenie, ktory element zostal wybrany
-    // wczytanie miejsc, do ktorych wysylamy wybrana nazwe oraz cene
-    var findListColor = element.parentElement.querySelector(".list_panel");
-    var chosenListColor = Array.from(findListColor.querySelectorAll('[data-color-price]'));
-    var yourColor = document.getElementById("your_color");
-    var costColor = document.getElementById("cost_color");
-
-      
-    // dla kazdej opcji sprawdzamy, ktora zostala wybrana
-    // wyslanie wybranych danych - koloru i ceny do formularza
-    // suma jest na biezaco aktualizowana
-    chosenListColor.forEach(function(target){
-      target.addEventListener("click", function(e) {
-        choice = target.innerText;
-        yourColor.innerText = choice;
-        choice2 = parseFloat(target.dataset.colorPrice);
-        costColor.innerText = choice2;
-          if(yourCost.innerText !== " "){
-            sumColor = choice2;
-            yourCost.innerText = sumTransport + sumChair + sumColor + sumPattern + " zł";
-          }
-      });
-    });
-
-
-    // wczytanie zmiennych
-    // sprawdzenie, ktory element zostal wybrany
-    // wczytanie miejsc, do ktorych wysylamy wybrana nazwe oraz cene
-    var findListPattern = element.parentElement.querySelector(".list_panel");
-    var chosenListPattern = Array.from(findListPattern.querySelectorAll('[data-pattern-price]'));
-    var yourPattern = document.getElementById("your_pattern");
-    var costPattern = document.getElementById("cost_pattern");
-
-    // dla kazdej opcji sprawdzamy, ktora zostala wybrana
-    // wyslanie wybranych danych - materialu i ceny do formularza
-    // suma jest na biezaco aktualizowana
-    chosenListPattern.forEach(function(target){
-      target.addEventListener("click", function(e) {
-        choice = target.innerText;
-        yourPattern.innerText = choice;
-        choice2 = parseFloat(target.dataset.patternPrice);
-        costPattern.innerText = choice2;
-          if(yourCost.innerText !== " "){
-            sumPattern = choice2;
-            yourCost.innerText = sumTransport + sumPattern +sumColor + sumChair + " zł";
-          }
-      });
-    });
-  });
-
-    
-  // wczytanie zmiennych dla checkboxa z transportem
-  // wcztanie miejsc, do ktorych wysylamy informacje
-  var transport = document.querySelector('input[type="checkbox"]');
-  var transportLabel = document.querySelector("label");
-  var yourTransport = document.getElementById("your_transport");
-  var chosenTransport = document.querySelector('[data-transport-price]');
-  var costTransport = document.getElementById("cost_transport");
-
-    
-  // jesli checkbox jest zaznaczony
-  // wyslanie wybranych danych - opcji transportu i ceny do formularza
-  // suma jest na biezaco aktualizowana
-  transport.addEventListener("click", function(e) {
-    if(transport.checked) {
-      choice = transportLabel.innerText;
-      yourTransport.innerText = choice;
-      choice2 = parseFloat(chosenTransport.dataset.transportPrice);
-      costTransport.innerText = choice2;
-      sumTransport += choice2;
-      yourCost.innerText = sumTransport + sumPattern + sumColor + sumChair + " zł";
+    //function adding cost
+    function sumUp(){
+        var sum = 0;
+        sum = Number(chair_summ_value.innerText) + Number(color_summ_value.innerText) + Number(pattern_summ_value.innerText) + Number(transport_summ_value.innerText);
+        sum_place.innerText = sum + "zł";
     }
-    // jesli odznaczymy transport to ta opcja zniknie w formularzu, a cena zostanie zmniejszona o jego cene  
-    else {
-      yourTransport.innerText = " ";
-      costTransport.innerText = " ";
-      choice2 = parseFloat(chosenTransport.dataset.transportPrice);
-      sumTransport -= choice2;
-      yourCost.innerText = sumTransport + sumPattern + sumColor + sumChair + " zł";
-    }
-  });
+    
+    
+    //find out which arrow was chosen
+    var chosenArrow = Array.from(document.querySelectorAll(".list_arrow"));
+    
+    chosenArrow.forEach(function(element) {
+        //toggle menu for selected arrow
+        var chosenList = element.parentElement.querySelector(".list_panel");
+        element.addEventListener("click", function(e) {
+          chosenList.classList.toggle("shooow");
+        });
+        
+    });
+    
+    
+    var chair_summ = document.querySelector(".panel_left").querySelector(".title");
+    var chair_summ_value = document.querySelector(".panel_right").querySelector(".title");
 
+    var color_summ = document.querySelector(".panel_left").querySelector(".color");
+    var color_summ_value = document.querySelector(".panel_right").querySelector(".color");
+
+    var pattern_summ = document.querySelector(".panel_left").querySelector(".pattern");
+    var pattern_summ_value = document.querySelector(".panel_right").querySelector(".pattern");
+
+    var findList = Array.from(document.querySelectorAll(".list_panel li"));
+    
+    findList.forEach(function(target){
+        
+        //find out which option was clicked put its name and cost into formular
+        //sum up the cost
+        target.addEventListener("click", function() {
+            var checkId = this.parentElement.getAttribute("id");
+            switch (checkId) {
+                case "chair":{
+                    chair_summ.innerText = this.innerText;
+                    chair_summ_value.innerText = this.dataset.price;
+                    break;
+                } 
+                case "color":{
+                    color_summ.innerText = this.innerText;
+                    color_summ_value.innerText = this.dataset.price;
+                    break;
+                }
+                    
+                case "pattern":{
+                    pattern_summ.innerText = this.innerText;
+                    pattern_summ_value.innerText = this.dataset.price;
+                    break; 
+                }      
+            }
+            sumUp();
+        });
+    });
+    
+    
+    //transport option
+    var transport = document.querySelector('input[type="checkbox"]');
+    var transport_summ = document.querySelector(".panel_left").querySelector(".transport");
+    var transport_summ_value = document.querySelector(".panel_right").querySelector(".transport");
+    
+    transport.addEventListener("click", function(){
+        if(transport.checked){
+            transport_summ.innerText = "Transport";
+            transport_summ_value.innerText = transport.dataset.price; 
+        }
+        else{
+            transport_summ.innerText = " ";
+            transport_summ_value.innerText = " ";
+        }
+        sumUp();
+    });
+    
 });
