@@ -1,68 +1,68 @@
-document.addEventListener('DOMContentLoaded',function(){
+document.addEventListener('DOMContentLoaded', () => {
 
-  //menu show/hide on hover
-  var aboutCompany = document.querySelector(".leftmenu");
-  var menu = document.querySelector("#hiddenMenu");
+    //menu show/hide on hover
+    var aboutCompany = document.querySelector(".leftmenu");
+    var menu = document.querySelector("#hiddenMenu");
 
-  menu.classList.add("hide");
-
-  aboutCompany.addEventListener("mouseover", function(e) {
-    menu.classList.remove("hide");
-  });
-
-  aboutCompany.addEventListener("mouseout", function(e) {
     menu.classList.add("hide");
-  });
+
+    aboutCompany.addEventListener("mouseover", () => {
+        menu.classList.remove("hide");
+    });
+
+    aboutCompany.addEventListener("mouseout", () => {
+        menu.classList.add("hide");
+    });
 
 
-  //images show/hide rectangles with names
-  var chosenImage = Array.from(document.querySelectorAll(".art2tile"));
+    //images show/hide rectangles with names
+    var chosenImage = Array.from(document.querySelectorAll(".art2tile"));
 
-  chosenImage.forEach(function(element) {
+    chosenImage.forEach(element => {
 
-    var chosenRectangle = element.querySelector(".rectangle");
+        var chosenRectangle = element.querySelector(".rectangle");
 
-    if(chosenRectangle) {
-      element.addEventListener("mouseover", function(e) {
-        chosenRectangle.classList.add("hide");
-      });
+        if(chosenRectangle) {
+            element.addEventListener("mouseover", () => {
+                chosenRectangle.classList.add("hide");
+            });
 
-      element.addEventListener("mouseout", function(e) {
-        chosenRectangle.classList.remove("hide");
-      });
-    }
+            element.addEventListener("mouseout", () => {
+                chosenRectangle.classList.remove("hide");
+            });
+        }
 
-});
+    });
 
 
-  //main slider
-  var nextBtn = document.querySelector("#arrowr");
-  var prevBtn = document.querySelector("#arrowl");
-  var slides = document.querySelectorAll("#art2small li");
+    //main slider
+    var nextBtn = document.querySelector("#arrowr");
+    var prevBtn = document.querySelector("#arrowl");
+    var slides = document.querySelectorAll("#art2small li");
 
-  var actualSlide = 0;
+    var actualSlide = 0;
 
-  slides[actualSlide].classList.add("visible");
-
-  nextBtn.addEventListener("click", function(){
-
-    slides[actualSlide].classList.remove("visible");
-    actualSlide++;
-    if(actualSlide >= slides.length){
-      actualSlide = 0;
-    }
     slides[actualSlide].classList.add("visible");
-  });
 
-  prevBtn.addEventListener("click", function(){
+    nextBtn.addEventListener("click", () => {
 
-    slides[actualSlide].classList.remove("visible");
-    actualSlide--;
-    if(actualSlide < 0){
-      actualSlide = slides.length-1;
-    }
-    slides[actualSlide].classList.add("visible");
-  });
+        slides[actualSlide].classList.remove("visible");
+        actualSlide++;
+        if(actualSlide >= slides.length){
+            actualSlide = 0;
+        }
+        slides[actualSlide].classList.add("visible");
+    });
+
+    prevBtn.addEventListener("click", () => {
+
+        slides[actualSlide].classList.remove("visible");
+        actualSlide--;
+        if(actualSlide < 0){
+            actualSlide = slides.length-1;
+        }
+        slides[actualSlide].classList.add("visible");
+    });
 
 
   //extra *
@@ -70,23 +70,22 @@ document.addEventListener('DOMContentLoaded',function(){
     var sum_place = document.querySelector(".sum");
     
     //function adding cost
-    function sumUp(){
+    var sumUp = () => {
         var sum = 0;
         sum = Number(chair_summ_value.innerText) + Number(color_summ_value.innerText) + Number(pattern_summ_value.innerText) + Number(transport_summ_value.innerText);
         sum_place.innerText = sum + "zł";
-    }
+    };
     
     
     //find out which arrow was chosen
-    var chosenArrow = Array.from(document.querySelectorAll(".list_arrow"));
+    var chosenArrow = Array.from(document.querySelectorAll(".drop_down_list"));
     
-    chosenArrow.forEach(function(element) {
+    chosenArrow.forEach(element => {
         //toggle menu for selected arrow
-        var chosenList = element.parentElement.querySelector(".list_panel");
-        element.addEventListener("click", function(e) {
-          chosenList.classList.toggle("shooow");
-        });
-        
+        var chosenList = element.querySelector(".list_panel");
+        element.addEventListener("click", () => {
+            chosenList.classList.toggle("shooow");
+        });  
     });
     
     
@@ -101,29 +100,36 @@ document.addEventListener('DOMContentLoaded',function(){
 
     var findList = Array.from(document.querySelectorAll(".list_panel li"));
     
-    findList.forEach(function(target){
+    findList.forEach(target => {
         
         //find out which option was clicked put its name and cost into formular
         //sum up the cost
-        target.addEventListener("click", function() {
-            var checkId = this.parentElement.getAttribute("id");
+        target.addEventListener("click", () =>  {
+            var checkId = target.parentElement.getAttribute("id");
+            var label_text = target.parentElement.parentElement.querySelector(".list_label");
             switch (checkId) {
-                case "chair":{
-                    chair_summ.innerText = this.innerText;
-                    chair_summ_value.innerText = this.dataset.price;
+                case "chair":
+                    chair_summ.innerText = target.innerText;
+                    chair_summ_value.innerText = target.dataset.price;
+
+                    label_text.innerText = chair_summ.innerText;
                     break;
-                } 
-                case "color":{
-                    color_summ.innerText = this.innerText;
-                    color_summ_value.innerText = this.dataset.price;
+                
+                case "color":
+                    color_summ.innerText = target.innerText;
+                    color_summ_value.innerText = target.dataset.price;
+                    label_text.innerText = color_summ.innerText;
                     break;
-                }
-                    
+                
                 case "pattern":{
-                    pattern_summ.innerText = this.innerText;
-                    pattern_summ_value.innerText = this.dataset.price;
+                    pattern_summ.innerText = target.innerText;
+                    pattern_summ_value.innerText = target.dataset.price;
+                    label_text.innerText = pattern_summ.innerText;
                     break; 
-                }      
+                }
+
+                default:
+                    pattern_summ_value = "0zł";     
             }
             sumUp();
         });
@@ -135,7 +141,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var transport_summ = document.querySelector(".panel_left").querySelector(".transport");
     var transport_summ_value = document.querySelector(".panel_right").querySelector(".transport");
     
-    transport.addEventListener("click", function(){
+    transport.addEventListener("click", () => {
         if(transport.checked){
             transport_summ.innerText = "Transport";
             transport_summ_value.innerText = transport.dataset.price; 
